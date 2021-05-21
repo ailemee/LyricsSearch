@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var songTextView : TextView
     lateinit var searchLyricsButton : Button
     lateinit var lyricsView : TextView
+    lateinit var clearButton : Button
 
     // base api url
     companion object {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         this.songTextView = findViewById(R.id.songTextView)
         this.searchLyricsButton = findViewById(R.id.searchLyricsButton)
         this.lyricsView = findViewById(R.id.lyricsView)
+        this.clearButton = findViewById(R.id.clearButton)
 
         // generates an implementation of the retrofit service interface
         val retro = Retrofit.Builder()
@@ -49,7 +51,13 @@ class MainActivity : AppCompatActivity() {
         // if the response was null, textView for the lyrics will display "no lyrics found"
         // otherwise textView will display the song lyrics
         searchLyricsButton.setOnClickListener {
+            if(artistTextView.text.toString().isEmpty() || songTextView.text.toString().isEmpty()) {
+                Toast.makeText(applicationContext, "Please input artist name and/or song name!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val myLyricsRequest = service.search(artistTextView.text.toString(), songTextView.text.toString())
+
             myLyricsRequest.enqueue(object : Callback<Lyrics> {
                 override fun onResponse(call: Call<Lyrics>, response: Response<Lyrics>) {
                     val result = response.body()?.getLyrics()
@@ -60,19 +68,18 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call<Lyrics>, t: Throwable) {
+                    lyricsView.text = "no lyrics found"
                     Log.i(MainActivity::class.simpleName, "error")
                 }
             })
         }
 
-
-
-//            if(artist.isEmpty() || song.isEmpty()) {
-//                Toast.makeText(applicationContext, "Please input artist name and/or song name!", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
+        // changes textView content back to default
+        clearButton.setOnClickListener {
+                lyricsView.text = "lyrics appear here"
+            }
+        }
     }
-}
 
 // data class that defines how our lyrics data will look like.
 data class Lyrics(
