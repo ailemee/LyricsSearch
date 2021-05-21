@@ -22,4 +22,7 @@ Known bugs:
 - Sometimes search request may take a bit longer when user has made many in a quick succession
 
 Screencast:
+- Click the image down below
+
+
 [![screencast](https://img.youtube.com/vi/U3kLJ-n-J78/0.jpg)](https://www.youtube.com/watch?v=U3kLJ-n-J78 "screencast")
