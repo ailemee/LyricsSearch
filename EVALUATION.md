@@ -1,4 +1,5 @@
 https://github.com/ailemee/LyricsSearch - Eemeli Allisto
+
 Vertaisarvion tekijä - Jani Äikäs
 
 Käytettävyys
@@ -23,3 +24,7 @@ Koodin laatu
 - Helppolukuista koodia, kuvaavat muuttujannimet ja loogisesti pilkottu. Ei jäänyt epäselvyyksiä.
 - Syötteiden tarkastus ja virheiden käsittely toteutettu hyvin.
 - En havainnut mitään bugeja testaillessa.
+
+Arvosana
+
+Toteutus ja koodin laatu voisi ansaita paremmankin arvosanan, mutta alhaisen vaikeustason ja heikohkon käytettävyyden takia antaisin arvosanaksi 2.
